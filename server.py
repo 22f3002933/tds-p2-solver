@@ -16,6 +16,9 @@ import json
 import chromadb
 import pickle
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -262,6 +265,7 @@ def extract_parameters(matched_ques_id, question):
 
 @app.post("/api")
 async def api(question: Annotated[str, Form()], file: List[UploadFile] | None = None):
+    print("Received question:", question) 
     if file:
         temp_dir = tempfile.mkdtemp()
         file_path = os.path.join(temp_dir, file[0].filename)
@@ -291,6 +295,8 @@ async def api(question: Annotated[str, Form()], file: List[UploadFile] | None = 
             params["file_path_2"] = file_path_2
             params["file_name_2"] = file[1].filename
     answer = solver(**params)
+    print(answer)
+
     if file:
         os.remove(file_path)
         if len(file) == 2:
@@ -302,9 +308,6 @@ async def api(question: Annotated[str, Form()], file: List[UploadFile] | None = 
                 os.rmdir(os.path.join(root, name))
         os.rmdir(temp_dir)
     return {"answer": answer}
-
-
-
 
 if __name__ == "__main__":
     import uvicorn
