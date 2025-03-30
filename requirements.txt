@@ -102,7 +102,6 @@ rsa==4.9
 safetensors==0.5.3
 scikit-learn==1.6.1
 scipy==1.15.2
-sentence-transformers==3.4.1
 setuptools==76.1.0
 shapely==2.0.7
 shellingham==1.5.4
@@ -115,7 +114,6 @@ tabula-py==2.10.0
 tenacity==9.0.0
 threadpoolctl==3.6.0
 tokenizers==0.21.1
-torch==2.6.0
 tqdm==4.67.1
 transformers==4.49.0
 typer==0.15.2

@@ -1,3 +1,4 @@
-.tds_env
+.venv
 __pycache__
 .imp_shell
+.env

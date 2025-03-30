@@ -223,39 +223,6 @@ def identify_question(problem_statement: str, question_templates: Dict[str, str]
         question_embeddings = load_or_create_embeddings(question_templates, force_refresh)
         return identify_question_with_file_cache(problem_statement, question_embeddings)
 
-# model = SentenceTransformer('all-MiniLM-L6-v2')
-
-# question_embeddings = {}
-# for q_id, q_statement in question_templates.items():
-    
-#     clean_template = re.sub(r'\{\w+\}', "X", q_statement)
-#     question_embeddings[q_id] = model.encode(clean_template)
-
-
-# def identify_question(problem_statement: str) -> Tuple[Optional[int], float]:
-#     # Replace numbers with X to focus on the structure of the question
-#     normalized_statement = re.sub(r'\b\d+(\.\d+)?\b', 'X', problem_statement)
-    
-#     # Generate embedding for the input problem statement
-#     input_embedding = model.encode(normalized_statement)
-    
-#     # Find the most similar question template
-#     max_similarity = -1
-#     best_match_id = None
-    
-#     for q_id, q_embedding in question_embeddings.items():
-#         # Calculate cosine similarity
-#         similarity = np.dot(input_embedding, q_embedding) / (np.linalg.norm(input_embedding) * np.linalg.norm(q_embedding))
-        
-#         if similarity > max_similarity:
-#             max_similarity = similarity
-#             best_match_id = q_id
-    
-#     return best_match_id, max_similarity
-
-
-
-
 def extract_parameters(matched_ques_id, question):
     if matched_ques_id == 30:
         arguments = {"user_message": extractors.extract_user_message(question)}
@@ -292,13 +259,6 @@ def extract_parameters(matched_ques_id, question):
     arguments = json.loads(res["arguments"])
 
     return arguments
-
-
-
-    
-
-
-
 
 @app.post("/api")
 async def api(question: Annotated[str, Form()], file: List[UploadFile] | None = None):
