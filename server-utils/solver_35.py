@@ -16,7 +16,14 @@ import os
 
 import requests
 import json
-
+from fastapi import FastAPI, HTTPException
+import uvicorn
+import chromadb
+from chromadb.utils import embedding_functions
+# from sentence_transformers import SentenceTransformer
+from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+import numpy as np
 
 def custom_openai_embedding_function(texts):
     api_key = os.getenv('AIPROXY_TOKEN')
@@ -41,18 +48,6 @@ def custom_openai_embedding_function(texts):
         return embeddings
     else:
         raise Exception(f"Error: {response.status_code}, {response.text}")
-    
-
-
-
-from fastapi import FastAPI
-import uvicorn
-import chromadb
-# from chromadb.utils import embedding_functions
-# from sentence_transformers import SentenceTransformer
-from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware
-import numpy as np
 
 app = FastAPI()
 
@@ -90,25 +85,52 @@ async def search_similar(collection, query: str, n_results: int = 3) -> list[dic
         for id, text, distance in zip(d["ids"][0], d["documents"][0], d["distances"][0])
     ]
 
+def cosine_similarity(vec1: np.ndarray, vec2: np.ndarray) -> float:
+    return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
 
 @app.post("/similarity")
 async def main(item: Item):
-    collection = await setup_vector_db()
+    # collection = await setup_vector_db()
 
-    # Add some documents
-    collection.add(
-        documents = item.docs,
-        ids = [str(i) for i in list(range(1, len(item.docs)+1))]
+    # # Add some documents
+    # collection.add(
+    #     documents = item.docs,
+    #     ids = [str(i) for i in list(range(1, len(item.docs)+1))]
         
-    )
+    # )
 
-    # Search
-    results = await search_similar(collection, item.query, n_results=3)
-    print(results)
+    # # Search
+    # results = await search_similar(collection, item.query, n_results=3)
+    # print(results)
 
-    matches = [res['text'] for res in results]
+    # matches = [res['text'] for res in results]
 
-    return {"matches": matches}
+    # return {"matches": matches}
+    try:
+        # Generate embeddings for query and documents
+        query_embedding = custom_openai_embedding_function([item.query])[0]
+        doc_embeddings = custom_openai_embedding_function(item.docs)
+
+        # Compute similarities
+        similarities = [
+            cosine_similarity(np.array(query_embedding), np.array(doc_embed)) 
+            for doc_embed in doc_embeddings
+        ]
+
+        # Get indices of top 3 most similar documents
+        top_3_indices = sorted(
+            range(len(similarities)), 
+            key=lambda i: similarities[i], 
+            reverse=True
+        )[:3]
+
+        # Return top 3 documents
+        matches = [item.docs[i] for i in top_3_indices]
+
+        return {"matches": matches}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Similarity search failed: {str(e)}")
 
 
 if __name__ == "__main__":

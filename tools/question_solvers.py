@@ -964,38 +964,40 @@ def most_similar(embeddings):
     return (phrase1, phrase2)'''
 
 def solver_35():
-    import subprocess
-    import os
-    import requests
-    PWD = os.getcwd()
-    os.chdir('server-utils')
-    process = subprocess.Popen(
-        ["nohup", "uvicorn", "solver_35:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
-        stdout=open("output_solver35.log", "w"),
-        stderr=subprocess.STDOUT,
-        preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
-    )
-    response = requests.get("https://api.ipify.org?format=json")
-    public_ip = response.json()["ip"]
-    os.chdir(PWD)
-    return(f"http://{public_ip}:8000/similarity")
+    # import subprocess
+    # import os
+    # import requests
+    # PWD = os.getcwd()
+    # os.chdir('server-utils')
+    # process = subprocess.Popen(
+    #     ["nohup", "uvicorn", "solver_35:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
+    #     stdout=open("output_solver35.log", "w"),
+    #     stderr=subprocess.STDOUT,
+    #     preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
+    # )
+    # response = requests.get("https://api.ipify.org?format=json")
+    # public_ip = response.json()["ip"]
+    # os.chdir(PWD)
+    # return(f"http://{public_ip}:8000/similarity")
+    return(f"https://tds-g1.vercel.app/api/ga3-q7/similarity")
 
 def solver_36():
-    import subprocess
-    import os
-    import requests
-    PWD = os.getcwd()
-    os.chdir('server-utils')
-    process = subprocess.Popen(
-        ["nohup", "uvicorn", "solver_36:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
-        stdout=open("output_solver36.log", "w"),
-        stderr=subprocess.STDOUT,
-        preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
-    )
-    response = requests.get("https://api.ipify.org?format=json")
-    public_ip = response.json()["ip"]
-    os.chdir(PWD)
-    return(f"http://{public_ip}:8001/execute")
+    # import subprocess
+    # import os
+    # import requests
+    # PWD = os.getcwd()
+    # os.chdir('server-utils')
+    # process = subprocess.Popen(
+    #     ["nohup", "uvicorn", "solver_36:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
+    #     stdout=open("output_solver36.log", "w"),
+    #     stderr=subprocess.STDOUT,
+    #     preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
+    # )
+    # response = requests.get("https://api.ipify.org?format=json")
+    # public_ip = response.json()["ip"]
+    # os.chdir(PWD)
+    # return(f"http://{public_ip}:8001/execute")
+    return(f"https://tds-g1.vercel.app/api/ga3-q8/execute")
 
 def solver_37(page_number: str):
     import httpx
@@ -1158,21 +1160,22 @@ def solver_38(ratings_start: str, ratings_end: str):
     return f'''{json.dumps(movies_data, indent=2)}'''
 
 def solver_39():
-    import subprocess
-    import os
-    import requests
-    PWD = os.getcwd()
-    os.chdir('server-utils')
-    process = subprocess.Popen(
-        ["nohup", "uvicorn", "solver_39:app", "--host", "0.0.0.0", "--port", "8002", "--reload"],
-        stdout=open("output_solver39.log", "w"),
-        stderr=subprocess.STDOUT,
-        preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
-    )
-    response = requests.get("https://api.ipify.org?format=json")
-    public_ip = response.json()["ip"]
-    os.chdir(PWD)
-    return(f"http://{public_ip}:8002/scrape")
+    # import subprocess
+    # import os
+    # import requests
+    # PWD = os.getcwd()
+    # os.chdir('server-utils')
+    # process = subprocess.Popen(
+    #     ["nohup", "uvicorn", "solver_39:app", "--host", "0.0.0.0", "--port", "8002", "--reload"],
+    #     stdout=open("output_solver39.log", "w"),
+    #     stderr=subprocess.STDOUT,
+    #     preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
+    # )
+    # response = requests.get("https://api.ipify.org?format=json")
+    # public_ip = response.json()["ip"]
+    # os.chdir(PWD)
+    # return(f"http://{public_ip}:8002/scrape")
+    return(f"https://tds-g1.vercel.app/api/ga4-q3/outline")
 
 def solver_40(required_city: str):
     from bs4 import BeautifulSoup

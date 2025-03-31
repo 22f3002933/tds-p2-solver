@@ -25,12 +25,6 @@ app.add_middleware(
     allow_headers=["*"],  # Make sure the necessary headers are included
 )
 
-
-
-
-
-
-
 tools = [
     {
         "type": "function",
