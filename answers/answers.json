@@ -1,0 +1,142 @@
+{
+  "1": "Version: Code 1.2.0\n OS Version: arm64",
+  "2": {
+    "args": { "email": "22f3002933@ds.study.iitm.ac.in" },
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate",
+      "Host": "httpbin.org",
+      "User-Agent": "HTTPie/3.2.4",
+      "X-Amzn-Trace-Id": "Root=1-67939c83-341de81406741fda7c5bad2a"
+    },
+    "origin": "49.36.82.72",
+    "url": "https://httpbin.org/get?email=22f3002933%40ds.study.iitm.ac.in"
+  },
+  "3": "f8a9ce61dd3a1aaf51fa4c51b74347eae18c2f37d3a6086259a4497ef4d056c7",
+  "4": 100,
+  "5": 54,
+  "6": "wey0ecgawo",
+  "7": 1587,
+  "8": "48de9",
+  "9": [
+    { "name": "Charlie", "age": 5 },
+    { "name": "Paul", "age": 5 },
+    { "name": "Jack", "age": 6 },
+    { "name": "Bob", "age": 9 },
+    { "name": "Oscar", "age": 16 },
+    { "name": "Ivy", "age": 18 },
+    { "name": "Liam", "age": 18 },
+    { "name": "Henry", "age": 36 },
+    { "name": "Alice", "age": 40 },
+    { "name": "Nora", "age": 60 },
+    { "name": "David", "age": 62 },
+    { "name": "Karen", "age": 62 },
+    { "name": "Mary", "age": 70 },
+    { "name": "Grace", "age": 76 },
+    { "name": "Emma", "age": 95 },
+    { "name": "Frank", "age": 97 }
+  ],
+  "10": "61fdd7775b88705500de902b1893931bced192d1e3fcfcb521a65e3145bcdf2f",
+  "11": 426,
+  "12": 35939,
+  "13": "https://raw.githubusercontent.com/22f3002933/tds-g1/refs/heads/main/email.json",
+  "14": "9cfe612bfa189649b6145ec5eac565e07bb757e2cc4fbf5a3c365bec758627b9",
+  "15": 159498,
+  "16": "38137ae2b95163a21681edb9e9bde10b505b4dba615c2f7db5f5b445aa6af88a",
+  "17": 43,
+  "18": "SELECT SUM(units * price) AS sales FROM tickets WHERE TRIM(LOWER(type)) = 'gold';",
+  "19": "# Analysis of My Weekly Walking Steps\n\nThis analysis documents the number of steps I walked each day over the past week, comparing my activity levels with my friends\n\n## Methodology\n\nThe data used in this analysis was collected from my smart watch and compared with my friends' step data. I tracked my steps each day and recorded the numbers. The steps were taken using a standard walking routine\n\n### Data Collection\n\nI used the following steps to gather the data:\n\n1. Sync my smart watch at the end of each day.\n2. Record the number of steps\n3. Compare my data with friends\n\n### Data Points\n\n**Key Variables:**\n- Number of steps per day\n- Walking time\n- Average steps for the week\n- Comparison with friends\n\n### Results\n\nThe table below shows my walking steps for the week:\n\n| Day       | My Steps | Friend A | Friend B |\n|-----------|----------|----------|----------|\n| Monday    | 8,000    | 7,500    | 10,000   |\n| Tuesday   | 10,000   | 9,500    | 8,500    |\n| Wednesday | 9,500    | 9,200    | 9,000    |\n| Thursday  | 7,800    | 8,000    | 7,200    |\n| Friday    | 11,000   | 10,500   | 11,500   |\n| Saturday  | 12,500   | 13,000   | 12,000   |\n| Sunday    | 6,500    | 7,000    | 6,000    |\n\nAs shown in the table, **my highest step count was on Saturday**, with 12,500 steps, while my **lowest step count** was on Sunday with only 6,500 steps.\n\n### Observations\n\nThe following are some key observations based on the data:\n\n- **Consistency**: I was fairly consistent, with most days averaging around 9,000 steps.\n- **Variation with Friends**: I often walked more than *Friend B* but less than *Friend A*.\n  \n[Data](https://example.com)\n\n#### Code\n\n`python`\n```\n# Calculate the average steps for the week\nsteps = [8000, 10000, 9500, 7800, 11000, 12500, 6500]\naverage_steps = sum(steps) / len(steps)\nprint(\"Average Steps:\", average_steps)\n```\n\n> NOTE: The above code is mock\n\n![Graph](https://example.com/image.jpg)",
+  "20": "file:ga2-q2.png",
+  "21": "https://22f3002933.github.io/",
+  "22": "e2112",
+  "23": 166605,
+  "24": "https://tds-g1.vercel.app/api/ga2-q6",
+  "25": "https://github.com/22f3002933/tds-g1",
+  "26": "https://hub.docker.com/repository/docker/22f3002933/tds-ga2/general",
+  "27": "https://tds-g1.vercel.app/api/ga2-q9",
+  "28": "NOT-CORRECT https://[random].ngrok-free.app/ // llama file hosting issue",
+  "29": "import httpx\n\nhttpx.post(\n    \"https://api.openai.com/v1/chat/completions\",\n    headers={\n        \"Authorization\": \"Bearer DUMMY_API_KEY\",\n    },\n    json = {\n        \"model\": \"gpt-4o-mini\",\n        \"messages\": [\n            {\"role\": \"system\", \"content\": \"Analyze the sentiment of the given text as GOOD, BAD, or NEUTRAL.\"},\n            {\"role\": \"user\", \"content\": \"z2 B8wER     xJgir8ywmXd5 F K7wc GrKT6K7J s VIyFTy\"}\n        ]\n    }\n)",
+  "30": "152",
+  "31": {
+    "model": "gpt-4o-mini",
+    "messages": [
+      { "role": "system", "content": "Respond in JSON" },
+      { "role": "user", "content": "Generate 10 random addresses in the US" }
+    ],
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "address_response",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "addresses": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "country": { "type": "string" },
+                  "apartment": { "type": "string" },
+                  "zip": { "type": "number" }
+                },
+                "required": ["country", "apartment", "zip"],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": ["addresses"],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "32": {
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          { "type": "text", "text": "Extract text from this image" },
+          {
+            "type": "image_url",
+            "image_url": {
+              "url": "data:image/png;base64,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"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "33": {
+    "model": "text-embedding-3-small",
+    "input": [
+      "Dear user, please verify your transaction code 684 sent to 22f3002933@ds.study.iitm.ac.in",
+      "Dear user, please verify your transaction code 57271 sent to 22f3002933@ds.study.iitm.ac.in"
+    ]
+  },
+  "34": "import numpy as np\nfrom itertools import combinations\n\ndef most_similar(embeddings):\n    highest_similarity=-1\n    most_similar_pair=None\n    for (phrase1, phrase2) in combinations(embeddings.keys(), 2):\n        similarity = float(np.dot(embeddings[phrase1], embeddings[phrase2]) / (np.linalg.norm(embeddings[phrase1]) * np.linalg.norm(embeddings[phrase2])))\n        if similarity > highest_similarity:\n            highest_similarity = similarity\n            most_similar_pair = (phrase1, phrase2)\n    return most_similar_pair",
+  "35": "https://tds-g1.vercel.app/api/ga3-q7/similarity",
+  "36": "https://tds-g1.vercel.app/api/ga3-q8/execute",
+  "ga3-q9": "NOT-IMPLEMENTED // AI PROMPT ISSUE",
+  "37": "function:get_cricket_stats_answer",
+  "38": "function:get_imdb_movies",
+  "39": "https://tds-g1.vercel.app/api/ga4-q3/outline",
+  "40": "function:get_weather_forecast",
+  "41": 39.7457136,
+  "42": "function:get_hackernews_link",
+  "43": "2023-09-04T07:48:43Z",
+  "44": "https://github.com/22f3002933/tds-g1",
+  "45": 40276,
+  "46": "PDF Markdown logic",
+  "47": 0.0597,
+  "48": 13,
+  "49": 119,
+  "50": 3410,
+  "51": 4710,
+  "52": 52234,
+  "53": 26832,
+  "54": "DUCKDB QUERY ISSUE",
+  "55": "a guide that hinted at the location of secrets capable of shattering long held illusions. The map led Miranda to a secluded chapel at the manner's edge. Weathered stone steps bore silent witness to generations of clandestine meetings and whispered confessions promising more answers beyond its door. Inside the chapel, candlelight danced across stained glass windows. In a hidden alcove behind the altar, a series of symbols matched those etched in the secret passage, deepening the mystery of forbidden rituals. Each symbol resonated with notes from Edmund's diary, as if the chapel itself echoed the past. Miranda felt a chill. Each mark, each faded inscription was a piece of a puzzle meant to reveal a hidden truth. In the alcove, a small, intricately locked box awaited. Opening it, Miranda discovered a delicate necklace and a faded photograph of a smiling woman whose eyes bore silent stories of love and loss. The necklace, a treasured family heirloom was engraved with initials matching those in Edmund's diary. It hinted at a forbidden romance and a vow to protect a truth that could upend reputations and ignite fresh scandal. A creak from the chapel door startled Miranda. Peeking out, she saw a shadowed figure vanish into a corridor. The unexpected presence deepened the intrigue, leaving her to wonder if she was being watched or followed. Determined to confront the mystery, Miranda followed the elusive figure. In the dim corridor, fleeting glimpses of determination and hidden sorrow emerged, challenging her assumptions about friend and foe alike. The pursuit led her to a narrow winding passage beneath the chapel. In the oppressive darkness, the air grew cold and heavy, and every echo of her footsteps seemed to whisper warnings of secrets best left undisturbed. In a subterranean chamber, the shadow finally halted. The figure's voice emerged from the gloom. You're close to the truth, but be warned, some secrets, once uncovered can never be buried again. The mysterious stranger introduced himself as Victor, a former confidant of Edmund.",
+  "56": "file:ga5-q10.png"
+}

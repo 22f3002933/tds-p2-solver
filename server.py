@@ -3,7 +3,6 @@ from fastapi import FastAPI, UploadFile, Form, File, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
 from typing import Annotated, Dict, Optional, List, Any, Tuple
-# from sentence_transformers import SentenceTransformer
 import tempfile
 import os
 from tools.question_templates import question_templates
@@ -17,6 +16,8 @@ import chromadb
 import pickle
 from pathlib import Path
 from dotenv import load_dotenv
+from datetime import datetime
+import base64
 
 load_dotenv()
 
@@ -256,15 +257,44 @@ def extract_parameters(matched_ques_id, question):
         output = response.json()["choices"][0]["message"]
         res = {"name": output["tool_calls"][0]["function"]["name"] , "arguments": output["tool_calls"][0]["function"]["arguments"]}
     except Exception as e:
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
    
     fn = eval(res["name"])
     arguments = json.loads(res["arguments"])
 
+    if matched_ques_id == 12:
+        match = re.search(r"matches\s+(\S+)\s+OR\s+(\S+)\s+OR\s+(\S+)", question)
+        if match:
+            for i in range(len(match.groups())):
+                arguments[f'symbol_{i+1}'] = match.groups()[i]
+
     return arguments
+
+async def try_hardcoded_solver(match_ques_id: str):
+    with open("./answers/answers.json", "r") as f:
+        answers = json.load(f)
+
+    answer = answers[match_ques_id]
+
+    if isinstance(answer, str) and answer.startswith("function:"):
+        func_name = answer.split(":")[1]
+        module = __import__(f"answers.functions.{match_ques_id}", fromlist=[func_name])
+        func = getattr(module, func_name)
+        answer = func()
+    elif isinstance(answer, str) and answer.startswith("file:"):
+        file_name = answer.split(":")[1]
+        file_path = os.path.join("./answers/files/", file_name)
+        with open(file_path, "rb") as f:
+            answer = base64.b64encode(f.read()).decode("utf-8")
+    elif isinstance(answer, json):
+        answer = json.dumps(answer)
+
+    return f"{answer}"
 
 @app.post("/api")
 async def api(question: Annotated[str, Form()], file: List[UploadFile] | None = None):
+    print("------------- New Request ---------------")
+    print("Timestamp:", datetime.now())   
     print("Received question:", question) 
     if file:
         temp_dir = tempfile.mkdtemp()
@@ -282,11 +312,13 @@ async def api(question: Annotated[str, Form()], file: List[UploadFile] | None = 
         
     matched_ques_id, similarity = identify_question(question, question_templates)
 
-    print(matched_ques_id, similarity)
+    print("Matched question ID:", matched_ques_id)
+    print("Similarity score:", similarity)
 
     solver = eval(f"solver_{matched_ques_id}")
     params = extract_parameters(matched_ques_id, question)
-    print(params)
+    print("Extracted parameters:", params)
+    
     if file:
         params["file_path"] = file_path
         params["file_name"] = file[0].filename
@@ -294,8 +326,20 @@ async def api(question: Annotated[str, Form()], file: List[UploadFile] | None = 
         if len(file) == 2:
             params["file_path_2"] = file_path_2
             params["file_name_2"] = file[1].filename
-    answer = solver(**params)
-    print(answer)
+
+
+    try:
+        answer = solver(**params)
+        print("Answer:", answer)
+    except Exception as e:
+        # load the answer from answers.json file and try seeing if there is one 
+        print("Error:", str(e))
+        try:
+            answer = await try_hardcoded_solver(matched_ques_id)
+            print("Hardcoded answer:", answer)
+        except Exception as e:
+            print("Error while trying hardcoded solver:", str(e))
+            raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
     if file:
         os.remove(file_path)

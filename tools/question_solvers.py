@@ -619,10 +619,10 @@ daily_steps = weekly_steps/7
 ```
 know more about me -
 
-![Pradeep Mondal](https://avatars.githubusercontent.com/u/42373983?v=4)
+![Dhruv Agarwal](https://avatars.githubusercontent.com/u/42373983?v=4)
 
-* [GitHub](https://github.com/pradeepmondal)
-* [LinkedIn](https://www.linkedin.com/in/impradeepmondal)
+* [GitHub](https://github.com/22f3002933)
+* [LinkedIn](https://www.linkedin.com/in/dhruvagarwalofficial)
 
 Apart from walking, I do: 
 1. Coding
@@ -796,7 +796,10 @@ def solver_27(temp_dir: str, file_path: str, file_name: str):
     os.chdir('server-utils')
     with open('q-fastapi.csv', 'w') as f:
         f.write(code)
-    subprocess.Popen(["nohup", "uvicorn", "solver_27:app", "--host", "0.0.0.0", "--port", "8003", "--reload"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.Popen(["nohup", "uvicorn", "solver_27:app", "--host", "0.0.0.0", "--port", "8003", "--reload"],
+        stdout=open("output_solver27.log", "w"),
+        stderr=subprocess.STDOUT,
+        preexec_fn=os.setpgrp)
     response = requests.get("https://api.ipify.org?format=json")
     public_ip = response.json()["ip"]
     os.chdir(PWD)
@@ -966,7 +969,12 @@ def solver_35():
     import requests
     PWD = os.getcwd()
     os.chdir('server-utils')
-    subprocess.Popen(["nohup", "uvicorn", "solver_35:app", "--host", "0.0.0.0", "--port", "8000", "--reload"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    process = subprocess.Popen(
+        ["nohup", "uvicorn", "solver_35:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
+        stdout=open("output_solver35.log", "w"),
+        stderr=subprocess.STDOUT,
+        preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
+    )
     response = requests.get("https://api.ipify.org?format=json")
     public_ip = response.json()["ip"]
     os.chdir(PWD)
@@ -978,7 +986,12 @@ def solver_36():
     import requests
     PWD = os.getcwd()
     os.chdir('server-utils')
-    subprocess.Popen(["nohup", "uvicorn", "solver_36:app", "--host", "0.0.0.0", "--port", "8001", "--reload"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    process = subprocess.Popen(
+        ["nohup", "uvicorn", "solver_36:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
+        stdout=open("output_solver36.log", "w"),
+        stderr=subprocess.STDOUT,
+        preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
+    )
     response = requests.get("https://api.ipify.org?format=json")
     public_ip = response.json()["ip"]
     os.chdir(PWD)
@@ -1150,7 +1163,12 @@ def solver_39():
     import requests
     PWD = os.getcwd()
     os.chdir('server-utils')
-    subprocess.Popen(["nohup", "uvicorn", "solver_39:app", "--host", "0.0.0.0", "--port", "8002", "--reload"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    process = subprocess.Popen(
+        ["nohup", "uvicorn", "solver_39:app", "--host", "0.0.0.0", "--port", "8002", "--reload"],
+        stdout=open("output_solver39.log", "w"),
+        stderr=subprocess.STDOUT,
+        preexec_fn=os.setpgrp  # Ensures the process does not become a zombie
+    )
     response = requests.get("https://api.ipify.org?format=json")
     public_ip = response.json()["ip"]
     os.chdir(PWD)

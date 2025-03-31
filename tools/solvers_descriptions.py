@@ -650,7 +650,7 @@ solvers_descriptions = {
     27: {
         "type": "function",
         "function": {
-            "name": "solver_26",
+            "name": "solver_27",
             "description": "Creates a fastapi server and returns the url endpoint",
             "parameters": {
                 "type": "object",
