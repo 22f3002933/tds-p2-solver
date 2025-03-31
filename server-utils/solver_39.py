@@ -1,12 +1,12 @@
 import httpx
-import hashlib
-from tqdm import tqdm
+# import hashlib
+# from tqdm import tqdm
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-import os
+# import os
 from bs4 import BeautifulSoup
-import json
+# import json
 
 # def cached_get(url):
 #     filename = hashlib.md5(url.encode('utf-8')).hexdigest()

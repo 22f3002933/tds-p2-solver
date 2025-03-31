@@ -2,7 +2,6 @@
 # requires-python = "==3.12"
 # dependencies = [
 #   "chromadb==0.4.15",
-#   "sentence-transformers",
 #   "fastapi",
 #   "uvicorn",
 #   "pydantic",
@@ -13,7 +12,7 @@
 
 
 import os
-import httpx
+# import httpx
 
 import requests
 import json
@@ -49,8 +48,8 @@ def custom_openai_embedding_function(texts):
 from fastapi import FastAPI
 import uvicorn
 import chromadb
-from chromadb.utils import embedding_functions
-from sentence_transformers import SentenceTransformer
+# from chromadb.utils import embedding_functions
+# from sentence_transformers import SentenceTransformer
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
